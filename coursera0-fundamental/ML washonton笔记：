@@ -1,0 +1,32 @@
+ML washonton笔记：
+products['word_count'] = graphlab.text_analytics.count_words(products['review'])
+products中的单词统计存储到word_count中
+graphlab.canvas.set_target('ipynb')
+------------
+train_data,test_data = products.random_split(.8, seed=0)
+cross validation.0.8的trainset
+---------
+sentiment_model = graphlab.logistic_classifier.create(train_data,target='sentiment',features=['word_count'],validation_set=test_data)
+-----------------------
+sentiment_model.evaluate(test_data, metric='roc_curve')
+测试test_data
+-----------------------
+giraffe_reviews = giraffe_reviews.sort('predicted_sentiment', ascending=False)
+降序排列
+-----------------------
+obama_word_count_table = obama[['word_count']].stack('word_count',new_column_name = \
+                                                    ['word', 'count'])
+生成一个单独的两列变量
+-----------------------
+tfidf统计：
+tf_idf = graphlab.text_analytics.tf_idf(people['word_count'])
+------------------------
+graphlab.distances.cosine(obama['tfidf'][0], clinton['tfidf'][0])
+cosine距离
+-------------------------
+knn_model = graphlab.nearest_neighbors.create(people, features=['tfidf'], label='name')
+knn模型
+knn_model.query(obama)查询离变量最近的
+
+协同过滤：
+	
