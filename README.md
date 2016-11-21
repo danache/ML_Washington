@@ -1,1 +1,1 @@
-## This is a fantastic ML coursera.
+## This is a fantastic ML course.
